@@ -97,7 +97,7 @@ public class AuthController {
     @PostMapping("/signIn")
     public String signIn(@Valid @RequestBody SignInRequest signInRequest)throws Exception{
 
-        if(! userService.existsByUsername(signInRequest.getUsername()))
+        if(!userService.existsByUsername(signInRequest.getUsername()))
             return "No user with that username";
 
 //        final boolean isAdmin= adminService.existsByAdmin_name(signInRequest.getUsername());

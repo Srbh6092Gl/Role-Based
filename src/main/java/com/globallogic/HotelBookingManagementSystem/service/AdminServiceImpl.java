@@ -1,11 +1,13 @@
 package com.globallogic.HotelBookingManagementSystem.service;
 
 import com.globallogic.HotelBookingManagementSystem.entity.Admin;
+import com.globallogic.HotelBookingManagementSystem.exception.NotFoundException;
 import com.globallogic.HotelBookingManagementSystem.repository.AdminRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -35,6 +37,31 @@ public class AdminServiceImpl implements AdminService{
     @Override
     public Admin addAdmin(Admin admin) {
         return adminRepository.save(admin);
+    }
+
+    @Override
+    public List<Admin> getAllAdmins() {
+        return adminRepository.findAll();
+    }
+
+    @Override
+    public Admin getAdmin(int id) throws NotFoundException {
+        Optional<Admin> admin = adminRepository.findById(id);
+        if(!admin.isPresent())
+            throw new NotFoundException("No Admin exists with id: "+id);
+        return admin.get();
+    }
+
+    @Override
+    public void removeAdminById(int id) throws NotFoundException {
+        if(!adminRepository.existsById(id))
+            throw new NotFoundException("No Admin exists with id: "+id);
+        adminRepository.deleteById(id);
+    }
+
+    @Override
+    public Admin updateAdmin(int id) {
+        return null;
     }
 
     @Override

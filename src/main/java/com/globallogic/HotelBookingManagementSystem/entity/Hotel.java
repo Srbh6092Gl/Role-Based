@@ -1,6 +1,7 @@
 package com.globallogic.HotelBookingManagementSystem.entity;
 
 import lombok.*;
+import org.hibernate.validator.constraints.URL;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
@@ -25,7 +26,7 @@ public class Hotel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int bookingId;
+    private int hotelId;
 
     @NotNull
     private String city;
@@ -58,6 +59,7 @@ public class Hotel {
     private String phone2;
 
     @NotNull
+    @URL
     private String website;
 
 }

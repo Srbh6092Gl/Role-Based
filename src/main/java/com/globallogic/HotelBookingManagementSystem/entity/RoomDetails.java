@@ -1,10 +1,10 @@
 package com.globallogic.HotelBookingManagementSystem.entity;
 
 import lombok.*;
+import org.hibernate.validator.constraints.URL;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.sql.Blob;
 
 @Data
 @NoArgsConstructor
@@ -32,6 +32,7 @@ public class RoomDetails {
     private Boolean isavailable;
 
     @NotNull
+    @URL
     private String photoURL;
 
 }
